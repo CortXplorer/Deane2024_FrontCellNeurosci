@@ -10,17 +10,28 @@
 
 clear; clc;
 % IMPORTANT: add your directory here to run full script ↓
-cd('E:\Dynamic_CSD');
+cd('E:\Deane_etal_2022');
 % did you add your directory here? ↑
 homedir = pwd; 
 addpath(genpath(homedir));
+
+%% automatically add necessary folders 
+
+if ~exist('Figures','dir')
+    mkdir('Figures');
+end
+
+if ~exist('Data','dir')
+    mkdir('Data');
+end
+    
 %% Pull relevant data structure from raw files:
 
 %Input:     several internal functions in /Scripts, /Groups/*.m
 %           files to indicated layer sorting and file types, raw data
 %           corresponding to group scripts
 %Output:    Figures of all single animals in /fig/['Single' (Group)] folder, 
-%           *DATA.mat files in Data folder
+%           [(Subject) '_DATA.mat'] files in Data folder
 Condition = {'preAM' 'preCL' 'CL' 'AM'}; 
 % look in Group/*.m for explanations of condition codes
 % full list: 'Pre' 'preAM' 'preAMtono' 'preCL' 'preCLtono' 'spPre1' ...
@@ -29,7 +40,7 @@ Condition = {'preAM' 'preCL' 'CL' 'AM'};
 disp('Running Dynamic CSD')
 Dynamic_CSD_Crypt(homedir,Condition)
 
-%% CONSTRUCTION - need to determing what will stay included belwo %%
+%% CONSTRUCTION - need to determing what will stay included below %%
 
 
 
