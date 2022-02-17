@@ -9,15 +9,13 @@ Post link here: llliiiinnnkkkkk
 ___
 
 #### Necessary to run:
-Raw data for this project can be found at: https://figshare.com/articles/Raw_Data_for_Deane_et_al_2020_JPhys/12083154 (1.8 GB)\
-Animal raw data (e.g "GKD_02_0028.mat") should be placed in ../Deane_etal_2022/Raw;
+Raw data for this project can be found at: https://figshare.com/s/5000eeb8946f1b8fd33e - This is a private link currently as the data is in drafts until the publication is out :)
+Animal raw data (e.g "KIC01_0001.mat") should be placed in ../Deane_etal_2022/Raw;
 
 #### Order to run and summary of steps:
 
-
-___
-
-If animal raw data files are placed correctly in ../Deane2020_JPhys/Raw, running the Pipeline_Deane2020 script will produce all figures and statistics from the publication. It's my recommendation to run this script in sections but it isn't necessary.
+If animal raw data files are placed correctly in ../Deane_etal_2022/Raw, running the ###Pipeline01_Matlab### script will produce ...
+If _ is in /folder, running Pipeline02 ... etc. 
 
 ___
 
