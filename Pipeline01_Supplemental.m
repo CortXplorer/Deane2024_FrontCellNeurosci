@@ -15,10 +15,6 @@ cd('E:\Deane_etal_2022');
 homedir = pwd; 
 addpath(genpath(homedir));
 
-
-
-
-
 %%  
 
 disp('Running Change in RELRES')
@@ -38,6 +34,37 @@ for iN = 1:length(Aname)
     toc
 end
 
+%% 
+
+disp('Running Group Spont; Change in AVREC')
+tic
+GroupSP_ChangeinAvrec(homedir)
+toc
+
+%% Group Sorting
+
+%Input:     D:\MyCode\Dynamic_CSD_Analysis\DATA -> *DATA.mat; (bin,mirror)
+%Output:    Figures of groups in "Group..." folder 
+%           .mat files in DATA/output folder
+%           AVG data
+
+% Data out:     Tuning struct contains sorted tuning of all tonotopies per
+%               per layer per parameter (for FIRST sink in layer if it
+%               falls between 0:65 ms, pause&click not included); Click
+%               struct containes sorted click response per stimulus
+%               frequency per layer per parameter; Normalized Clicks
+%               normalize all sinks within one animal/one layer/one click 
+%               frequency to the first ~isnan in the pre-laser condition -
+%               if no detected sinks in pre-laser condition, animal layer
+%               stim type (2hz, 5hz, etc.) is nanned. 
+
+% Figures out:  SinkRMS of tonotopy tuning curves through the recording
+%               session; Boxplots of consecutive click responses per
+%               measurement and layer; Boxplots of consecutive click
+%               responses normalized to the first detected sink of the
+%               pre-CL
+disp('Running Group Anyalysis')
+GroupAnalysis_Crypt(homedir);
 
 %% Compute scalogram
 
