@@ -57,7 +57,7 @@ AvgCSDfig(homedir)
 %           of measurement in "Group_Avrec". mat files contain sorted AVREC 
 %           data and the first peak amp detected for each AVREC. These are for
 %           normalization and averaging in group scripts (needed for GroupCL_ChangeinAvrec)
-disp('Running Change in AVREC')
+disp('Running Change in AVREC per Animal')
 tic
 ChangeInAvrec(homedir)
 toc
@@ -67,70 +67,30 @@ toc
 %           trial level
 
 % IMPORTANT: 
-% Output must be added to a master csv - and I am really sorry about this 
-% step needing to be manual. contact katrina.deane@lin-magdeburg.de for
-% assistance if needed. 
+% Output must be added to a master csv: AVRECPEAKCLST.csv and
+% AVRECPEAKAMST.csv in \Data\PeakDataCSV
+% And I am really sorry about this step needing to be manual. contact 
+% katrina.deane@lin-magdeburg.de for assistance if needed. 
 
 Aname = {'KIC02'}; 
+% full list:
 % 'KIC02' 'KIC03' 'KIC04' 'KIC10' 'KIC11' 'KIC12' 'KIC13' 'KIC14' 'KIC15' 'KIC16'
 % 'KIT01' 'KIT02' 'KIT03' 'KIT04' 'KIT05' 'KIT07' 'KIT08' 'KIT09' 'KIT11' 'KIT12'
 % 'KIV02' 'KIV03' 'KIV04' 'KIV09' 'KIV12' 'KIV16' 'KIV17'
 for iN = 1:length(Aname)
-    disp(['Running single trial feature extraction for: ' Aname{iN}])
+    disp(['Running single trial Avrec feature extraction for: ' Aname{iN}])
     tic
     ChangeInAvrecSTperAnimal(homedir,Aname{iN}) 
     toc
 end
-%
-
-
-%% CONSTRUCTION - need to determing what will stay included below %%
-
-
 
 %% Group Averages
 
-%Input:     D:\MyCode\Dynamic_CSD_Analysis\fig\Group_Avrec -> AvrecAll.mat
-%           or \Group_Spikes -> SpikesAll.mat and  
-%Output:    Figures of in "ChangeIn_Spikes" and "ChangeIn_Avrec"
-%           respectively. Figures coming out are for Click and Am data
-disp('Running Group Clicks; Change in AVREC')
+%Input:     ..\Figures\Group_Avrec -> *AvrecAll.mat
+%Output:    ..\Figures\Group_Avrec -> figures of full and layer-wise Avrecs
+%           pre laser and post laser, including standard deviation
+
+disp('Running Change in AVREC per Group')
 tic
-GroupCL_ChangeinAvrec(homedir)
+Group_ChangeinAvrec(homedir)
 toc
-
-
-%           Same as above but for the spontaneous data
-disp('Running Group Spont; Change in AVREC')
-tic
-GroupSP_ChangeinAvrec(homedir)
-toc
-
-
-%% Group Sorting
-
-%Input:     D:\MyCode\Dynamic_CSD_Analysis\DATA -> *DATA.mat; (bin,mirror)
-%Output:    Figures of groups in "Group..." folder 
-%           .mat files in DATA/output folder
-%           AVG data
-
-% Data out:     Tuning struct contains sorted tuning of all tonotopies per
-%               per layer per parameter (for FIRST sink in layer if it
-%               falls between 0:65 ms, pause&click not included); Click
-%               struct containes sorted click response per stimulus
-%               frequency per layer per parameter; Normalized Clicks
-%               normalize all sinks within one animal/one layer/one click 
-%               frequency to the first ~isnan in the pre-laser condition -
-%               if no detected sinks in pre-laser condition, animal layer
-%               stim type (2hz, 5hz, etc.) is nanned. 
-
-% Figures out:  SinkRMS of tonotopy tuning curves through the recording
-%               session; Boxplots of consecutive click responses per
-%               measurement and layer; Boxplots of consecutive click
-%               responses normalized to the first detected sink of the
-%               pre-CL
-disp('Running Group Anyalysis')
-GroupAnalysis_Crypt(homedir);
-
-
-

@@ -1,5 +1,7 @@
 ## Script Navigator
 
+### Pipeline01_MatLab
+
 #### Dynamic_CSD_Crypt
 * imakeIndexer
 * CalculateCSD
@@ -18,4 +20,13 @@
 
 #### ChangeInAvrecSTperAnimal
 * consec_peakST
+
+#### Group_ChangeInAvrec
+* shadedErrorBar
+
+### Pipeline01_Supplemental 
+
+#### GroupSP_ChangeInAvrec
+
+#### Group_ChangeInRelres
 

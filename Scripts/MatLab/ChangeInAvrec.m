@@ -81,6 +81,9 @@ for i_In = 1:entries
             h = figure('Name',['Avrec_' stimtype{iTyp} layers{iLay} '_' name],'Position',[10 10 1080 1200]);
             
             for iStim = 1:length(CLstimlist)
+                
+                % get correct stim out of consistant order in data
+                ThisStim = find([2 5 10 20 40]==CLstimlist(iStim));
                 % create container for lables
                 CondN = cell(1,size(Data,2));
                 
@@ -100,10 +103,10 @@ for i_In = 1:entries
                     % take an average of all channels (already averaged across trials)
                     if contains(layers{iLay}, 'All')
                         % All channels takes the AVREC!
-                        avgchan = Data(iMeas).AVREC_raw{1, iStim}';
+                        avgchan = Data(iMeas).AVREC_raw{1, ThisStim}';
                     else
                         % Layers take the nan-sourced CSD! (flip it also)
-                        avgchan = Data(iMeas).CSD{1, iStim}(str2num(Layer.(layers{iLay}){thisA}),:) * -1;
+                        avgchan = Data(iMeas).CSD{1, ThisStim}(str2num(Layer.(layers{iLay}){thisA}),:) * -1;
                         avgchan(avgchan < 0) = NaN;
                         avgchan = nanmean(avgchan);
                         % to get a consecutive line after calculating the peaks
@@ -168,13 +171,6 @@ for i_In = 1:entries
             end
             
             savefig(h,['Avrec_' stimtype{iTyp} layers{iLay} '_' name],'compact')
-            
-            try
-                saveas(h,['Avrec_' stimtype{iTyp} layers{iLay} '_' name '.pdf'])
-            catch
-                fprint('No pdf saved for this file')
-            end
-            
             close (h)
         end
     end
