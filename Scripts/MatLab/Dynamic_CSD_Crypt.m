@@ -16,8 +16,8 @@ if ~exist('homedir','var')
         cd('E:\Deane_etal_2022');
     end
     homedir = pwd;
+    addpath(genpath(homedir));
 end
-addpath(genpath(homedir));
 cd(homedir),cd Groups;
 
 %% Check Condition    
