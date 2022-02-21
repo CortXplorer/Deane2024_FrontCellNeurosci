@@ -6,11 +6,6 @@ function ChangeInAvrec(homedir)
 % frequency presentation.
 
 %Input:     ..\DATA\*DATA.mat 
-%Output:    Figures of in \Figures\Single_Avrec
-%           respectively. 
-%           2 *.mat files for each type of measurement in \Figures\"Group_Avrec"
-%           and "Group_Spikes". mat files contain sorted data for
-%           normalization and averaging in group scripts 
 
 %Output:    Figures of in "Single_Avrec" are for Click, Amp modulation, and
 %           Spontaneous measurements. Data out as *.mat files for each type 
@@ -290,6 +285,6 @@ save('AM_AvrecAll','AM_AvrecAll','AM_PeakofPre');
 save('Spont_AvrecAll','SP_AvrecAll','SP_PeakofPre');
 % save the table in the main folder - needs to be moved to the Julia folder
 % for stats
-cd(homedir)
-writetable(CLPeakData,'AVRECPeakCL.csv')
-writetable(AMPeakData,'AVRECPeakAM.csv')
+% cd(homedir); cd Data
+% writetable(CLPeakData,'AVRECPeakCL.csv')
+% writetable(AMPeakData,'AVRECPeakAM.csv')

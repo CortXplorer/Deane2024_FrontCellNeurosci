@@ -12,3 +12,10 @@
 	* InterX
 
 #### AvgCSDfig
+
+#### ChangeInAvrec
+* consec_peak
+
+#### ChangeInAvrecSTperAnimal
+* consec_peakST
+

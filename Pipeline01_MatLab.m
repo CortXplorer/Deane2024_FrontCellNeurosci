@@ -51,34 +51,40 @@ AvgCSDfig(homedir)
 %% AVREC Sorting and output
 
 %Input:     ..\DATA\*DATA.mat 
-%Output:    Figures of in \Figures\Single_Avrec
-%           respectively. 
-%           2 *.mat files for each type of measurement in \Figures\"Group_Avrec"
-%           and "Group_Spikes". mat files contain sorted data for
-%           normalization and averaging in group scripts 
+
+%Output:    Figures of in "Single_Avrec" are for Click, Amp modulation, and
+%           Spontaneous measurements. Data out as *.mat files for each type 
+%           of measurement in "Group_Avrec". mat files contain sorted AVREC 
+%           data and the first peak amp detected for each AVREC. These are for
+%           normalization and averaging in group scripts (needed for GroupCL_ChangeinAvrec)
 disp('Running Change in AVREC')
 tic
 ChangeInAvrec(homedir)
 toc
 
-%% CONSTRUCTION - need to determing what will stay included below %%
+%Input:     ..\Data\Data.mat
+%Output:    ..\Data\PeakDataCSV\*.csv table peak amp and lat at a single
+%           trial level
 
-
-% This takes 45 minutes per subject so only select the ones needed. Output
-% must be added to a master csv - and I am really sorry about this step
-% needing to be manual. contact katrina.deane@lin-magdeburg.de for
+% IMPORTANT: 
+% Output must be added to a master csv - and I am really sorry about this 
+% step needing to be manual. contact katrina.deane@lin-magdeburg.de for
 % assistance if needed. 
-Aname = {'KIC13' 'KIC14' 'KIC15' 'KIC16' 'KIT01' 'KIT09' 'KIT11' 'KIT12'}; 
-% 'KIC02' 'KIC03' 'KIC04' 'KIC10' 'KIC11' 'KIC12' 'KIC13' 'KIC14' 'KIC15' 
-% 'KIC16' 'KIT01' 'KIT02' 'KIT03' 'KIT04' 'KIT05' 'KIT07' 'KIT08'
-% 'KIT09' 'KIT11' 'KIT12' 'KIV02' 'KIV03' 'KIV04' 'KIV09' 'KIV12' 'KIV16' 'KIV17'
+
+Aname = {'KIC02'}; 
+% 'KIC02' 'KIC03' 'KIC04' 'KIC10' 'KIC11' 'KIC12' 'KIC13' 'KIC14' 'KIC15' 'KIC16'
+% 'KIT01' 'KIT02' 'KIT03' 'KIT04' 'KIT05' 'KIT07' 'KIT08' 'KIT09' 'KIT11' 'KIT12'
+% 'KIV02' 'KIV03' 'KIV04' 'KIV09' 'KIV12' 'KIV16' 'KIV17'
 for iN = 1:length(Aname)
-    disp(['Runing single trial feature extraction for ' Aname{iN}])
+    disp(['Running single trial feature extraction for: ' Aname{iN}])
     tic
     ChangeInAvrecSTperAnimal(homedir,Aname{iN}) 
     toc
 end
 %
+
+
+%% CONSTRUCTION - need to determing what will stay included below %%
 
 
 

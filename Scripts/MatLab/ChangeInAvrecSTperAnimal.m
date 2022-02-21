@@ -1,22 +1,28 @@
 function ChangeInAvrecSTperAnimal(homedir,Aname)
 
-% This script takes *.mat files out of the DATA/ folder - manually called. It checks the
+% This script takes *.mat files out of \DATA. It checks the
 % condition names and finds the measurements associated with repeated
-% stimuli (currently clicks only). It then produces a table for Julia
-% statistics and figure output with the peak amp and latency per single
-% trial
+% stimuli. It then produces a table for Julia statistics and figure output 
+% with the peak amp and latency per single trial
 
-%Input:     D:\MyCode\Dynamic_CSD_Analysis\DATA -> *DATA.mat
-%Output:    Table in main folder containing peak amp and lat at a single
+%Input:     ..\Data\Data.mat
+%Output:    ..\Data\PeakDataCSV\*.csv table peak amp and lat at a single
 %           trial level
 
-%% standard operations
-cd(homedir),cd DATA;
+% NOTE:     full list of frequency for click and amp stim: [2,5,10,20,40].
+%           However, only 5 and 10 are being run here. Update variable:
+%           CLstimlist to pull out the extra data
+% Also:     This script is split to per animal because extracting all
+%           frequencies takes 45 minutes per subject. It's 2 minutes per
+%           animal for just 5 and 10 stim frequency. This is also why the
+%           csv's need to be manually added to a master script - it reaches
+%           the writing capacity of matlab and the can not be opened with
+%           excell when all data is run. Good luck if you want all of it! 
 
 
 %% Loop variables and data structures
 layers = {'All', 'I_II', 'IV', 'V', 'VI'}; 
-CLstimlist = [2,5,10,20,40]; 
+CLstimlist = [5,10]; % full list: 2,5,10,20,40
 
 % set up simple cell sheets to hold all data: avrec of total/layers and
 % peaks of pre conditions
@@ -37,12 +43,11 @@ AMPeakData = table('Size', [allocate 10], ...
     'VariableNames', {'Group','Animal','Layer','Measurement',...
     'ClickFreq','OrderofClick','TrialNumber','PeakAmp','PeakLat','RMS'});
 
-%% Load in
-load([Aname '_Data.mat']);
+%% Load in current animal data
+load([Aname '_Data.mat'],'Data');
 
 % load in Group .m for layer info and point to correct animal
-cd (homedir),cd groups;
-run([Aname(1:3) '.m']);
+run([Aname(1:3) '.m']); % add variables: animals, channels, Cond, Layer
 thisA = find(contains(animals,Aname));
 clcount = 1;
 amcount = 1;
@@ -63,7 +68,7 @@ for iLay = 1:length(layers)
             % take an average of all channels at each trial
             if contains(layers{iLay}, 'All')
                 % total gets the single trial avrec
-                avgchan = mean(Data(iMeas).SingleRecCSD{1, iStim}(:,:,:));
+                avgchan = permute(Data(iMeas).SglTrl_AVRraw{1, iStim},[2,1,3]);
             else
                 % Layers take the nan-sourced CSD (flip it also)
                 avgchan = Data(iMeas).SglTrl_CSD{1, iStim}(str2num(Layer.(layers{iLay}){thisA}),:,:) *-1;
@@ -117,7 +122,7 @@ for iLay = 1:length(layers)
             
             % take an average of all channels at each trial
             if contains(layers{iLay}, 'All')
-                avgchan = mean(Data(iMeas).SingleRecCSD{1, iStim});
+                avgchan = permute(Data(iMeas).SglTrl_AVRraw{1, iStim},[2,1,3]);
             else
                 % Layers take the nan-sourced CSD! (flip it also)
                 avgchan = Data(iMeas).SglTrl_CSD{1, iStim}(str2num(Layer.(layers{iLay}){thisA}),:,:) *-1;
@@ -162,8 +167,18 @@ end % layer
 % save the table in the main folder - needs to be moved to the Julia folder
 % for stats
 CL_CSVname = [Aname 'PeakCLST.csv'];
-AM_CSVname = [Aname 'PeakCLAM.csv'];
-cd(homedir)
+AM_CSVname = [Aname 'PeakAMST.csv'];
+
+cd(homedir); cd Data
+if exist('PeakDataCSV','dir')
+    cd PeakDataCSV
+else
+    mkdir('PeakDataCSV')
+    cd PeakDataCSV
+end
+
 writetable(CLPeakData,CL_CSVname)
 writetable(AMPeakData,AM_CSVname)
+
+cd(homedir)
 end
