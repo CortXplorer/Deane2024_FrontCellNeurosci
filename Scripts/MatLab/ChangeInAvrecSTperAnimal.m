@@ -114,6 +114,10 @@ end % layer
 %% Amplitude Modulation
 for iLay = 1:length(layers)
     for iStim = 1:length(CLstimlist)
+        
+        % get correct stim out of consistant order in data
+        ThisStim = find([2 5 10 20 40]==CLstimlist(iStim));
+        
         for iMeas = 1:size(Data,2)
             
             if isempty(Data(iMeas).measurement)
@@ -126,10 +130,10 @@ for iLay = 1:length(layers)
             
             % take an average of all channels at each trial
             if contains(layers{iLay}, 'All')
-                avgchan = permute(Data(iMeas).SglTrl_AVRraw{1, iStim},[2,1,3]);
+                avgchan = permute(Data(iMeas).SglTrl_AVRraw{1, ThisStim},[2,1,3]);
             else
                 % Layers take the nan-sourced CSD! (flip it also)
-                avgchan = Data(iMeas).SglTrl_CSD{1, iStim}(str2num(Layer.(layers{iLay}){thisA}),:,:) *-1;
+                avgchan = Data(iMeas).SglTrl_CSD{1, ThisStim}(str2num(Layer.(layers{iLay}){thisA}),:,:) *-1;
                 avgchan(avgchan < 0) = NaN;
                 avgchan = nanmean(avgchan);
                 % to get a consecutive line after calculating the peaks

@@ -67,12 +67,14 @@ toc
 %           trial level
 
 % IMPORTANT: 
-% Output must be added to a master csv: AVRECPEAKCLST.csv and
-% AVRECPEAKAMST.csv in \Data\PeakDataCSV
+% Output must be added to a master csv: AVRECPeakCLST.csv and
+% AVRECPeakAMST.csv in \Data\PeakDataCSV
 % And I am really sorry about this step needing to be manual. contact 
 % katrina.deane@lin-magdeburg.de for assistance if needed. 
 
-Aname = {'KIC02'}; 
+Aname = {'KIC02' 'KIC03' 'KIC04' 'KIC10' 'KIC11' 'KIC12' 'KIC13' 'KIC14' 'KIC15' 'KIC16'...
+            'KIT01' 'KIT02' 'KIT03' 'KIT04' 'KIT05' 'KIT07' 'KIT08' 'KIT09' 'KIT11' 'KIT12'...
+            'KIV02' 'KIV03' 'KIV04' 'KIV09' 'KIV12' 'KIV16' 'KIV17'}; 
 % full list:
 % 'KIC02' 'KIC03' 'KIC04' 'KIC10' 'KIC11' 'KIC12' 'KIC13' 'KIC14' 'KIC15' 'KIC16'
 % 'KIT01' 'KIT02' 'KIT03' 'KIT04' 'KIT05' 'KIT07' 'KIT08' 'KIT09' 'KIT11' 'KIT12'
