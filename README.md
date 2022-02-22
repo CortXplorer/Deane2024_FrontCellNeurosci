@@ -14,10 +14,16 @@ Animal raw data (e.g "KIC01_0001.mat") should be placed in ../Deane_etal_2022/Ra
 
 #### Order to run and summary of steps:
 
-If animal raw data files are placed correctly in ..\Deane_etal_2022\Raw, running the *Pipeline01_MatLab* script will produce ...
-* booyah
+If animal raw data files are placed correctly in \Deane_etal_2022\Raw, running the *Pipeline01_MatLab.m* script will produce 
+* single CSD figures
+* group average CSD figures
+* Data structure per animal with all measurement data (lfp, csd, avrec, relres, absres)
+* single AVREC and layer traces
+* single trial peak detection csv per animal (to be compiled into AVRECPeakCLST.csv and AVRECPeakAMST.csv)
+* group average AVREC and layer traces 
 
-If AVRECPeakCLST.csv and AVRECPeakAMST.csv is in ..\Deane_etal_2022\Data\PeakDataCSV\, running Pipeline02 ... etc. 
+If AVRECPeakCLST.csv and AVRECPeakAMST.csv is in \Deane_etal_2022\Data\PeakDataCSV\, running *Pipeline02_LMM.R* will produce 
+* LMM html files in \ 
 * NOTE: these master files need to be manually compiled by copying data from per-subject single trial peak data output of Deane_etal_2022\Scripts\MatLab\ChangeInAvrecSTperAnimal, run from the Pipeline01_MatLab script (can be run independantly if data already exists from previous runs)
 
 ___

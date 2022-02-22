@@ -39,7 +39,7 @@ library(effectsize)
 ```{r message=FALSE, warning=FALSE}
 data_type <- "CLST"
 raw_data <- read_csv(
-  file = "../../Data/AVRECPeakCLST.csv", # file path
+  file = "../../Data/PeakDataCSV/AVRECPeakCLST.csv", # file path
   col_types = cols(
     RMS = col_double(),
     PeakAmp = col_double(),
