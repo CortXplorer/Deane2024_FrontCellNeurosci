@@ -23,7 +23,7 @@ If animal raw data files are placed correctly in \Deane_etal_2022\Raw, running t
 * group average AVREC and layer traces 
 
 If AVRECPeakCLST.csv and AVRECPeakAMST.csv is in \Deane_etal_2022\Data\PeakDataCSV\, running *Pipeline02_LMM.R* will produce 
-* LMM html files in \ 
+* LMM html files in \Deane_etal_2022\Data\LMMstats
 * NOTE: these master files need to be manually compiled by copying data from per-subject single trial peak data output of Deane_etal_2022\Scripts\MatLab\ChangeInAvrecSTperAnimal, run from the Pipeline01_MatLab script (can be run independantly if data already exists from previous runs)
 
 ___
