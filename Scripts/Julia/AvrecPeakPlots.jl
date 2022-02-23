@@ -75,37 +75,3 @@ function Avrec1Peak(figs,Tab,whichpeak="1st",whichstim="2Hz",savetype=".pdf",sti
 
     end
 end
-
-function AvrecScatter(figs,Scat,whichstim="2Hz",savetype=".pdf",stimtype="CL",trialtype="TA")
-
-    foldername = "AvrecScatter"
-    if !isdir(joinpath(figs,foldername))
-        mkdir(joinpath(figs,foldername))
-    end
-
-    MeasList = unique(Scat[:,:Measurement])
-    LayList  = unique(Scat[:,:Layer])
-    for iMeas = 1:length(MeasList)
-        ### per measurement ###
-        Scat_Meas = Scat[Scat[:,:Measurement] .== MeasList[iMeas],:]
-        
-        for iLay = 1:length(LayList)
-            Scat_Lay = Scat_Meas[Scat_Meas[:,:Layer] .== LayList[iLay],:]
-            Scat_Lay = filter(row -> ! isnan(row.PeakAmp), Scat_Lay)
-            
-            # correct peak latency time to be after each stim start time 
-            startwin = Int.([0:1000/parse(Int,whichstim[begin:end-2]):1000...])
-
-            for iWin = 1:length(startwin) - 1
-                Scat_Lay[Scat_Lay[:,:OrderofClick].== iWin,:PeakLat] = Scat_Lay[Scat_Lay[:,:OrderofClick] .== iWin,:PeakLat] .+ startwin[iWin]
-            end
-
-            Title = "PeakAmp against Latency " * LayList[iLay] * " " * MeasList[iMeas] * " at " * whichstim * " " * stimtype * " " * trialtype
-            scatterplot = @df Scat_Lay scatter(:PeakLat, :PeakAmp, group = :Group, markersize=3, markerstrokewidth=0, markerstrokealpha=0) #,markerstrokecolor = :tab10
-        
-            name = joinpath(figs,foldername,Title) * savetype
-            savefig(scatterplot, name);
-            
-        end # layer
-    end # measurement
-end # function
