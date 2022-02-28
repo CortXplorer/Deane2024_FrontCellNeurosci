@@ -1,5 +1,9 @@
 # terminal command: `Rscript main_script.R`
 
+# create a directory Data/LMMstats for the output. ignores, if already exists 
+output_path <- "Data/LMMstats"
+dir.create(output_path, showWarnings = FALSE)
+
 # check if packages are installed and install if not
 
 packages <- c(
@@ -17,9 +21,11 @@ for(pckg in packages) {
 # render RMarkdown files
 
 rmarkdown::render(
-  input = "LMM_AM.Rmd",  
-  output_file = "LMM_AM.html")
+  input = "Scripts/R/LMM_AM.Rmd",  
+  output_file = file.path(output_path, "LMM_AM.html"))
 
 rmarkdown::render(
-  input = "LMM_CL.Rmd",  
-  output_file = "LMM_CL.html")
+  input = "Scripts/R/LMM_CL.Rmd",  
+  output_file = file.path(output_path, "LMM_CL.html"))
+
+
