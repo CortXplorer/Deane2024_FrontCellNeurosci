@@ -4,7 +4,9 @@
 *.pdf
 *.csv
 *.xlsx
+*.html
 
 *.asv
 
 *.vscode/
+*.Rhistory
