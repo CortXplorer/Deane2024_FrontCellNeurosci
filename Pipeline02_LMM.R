@@ -1,7 +1,7 @@
-# terminal command: `Rscript main_script.R`
+# terminal command: `Pipeline02_LMM.R`
 
 # create a directory Data/LMMstats for the output. ignores, if already exists 
-output_path <- "Data/LMMstats"
+output_path <- paste(getwd(),"/Data/LMMstats",sep="")
 dir.create(output_path, showWarnings = FALSE)
 
 # check if packages are installed and install if not
