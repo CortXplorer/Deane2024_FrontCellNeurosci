@@ -85,8 +85,7 @@ for (freq in stimfreq){
   
   cat('\n\n')
   
-  # for(layer in layers){
-  for(layer in c("All")){
+  for(layer in layers){
 
     cat("###", layer, "Layer {.tabset .tabset-fade .tabset-pills} \n")
     
@@ -96,7 +95,7 @@ for (freq in stimfreq){
              Layer == layer)
     
     # for(metric in metrics){
-    for(metric in "RMS"){
+    for(metric in "logRMS"){
 
       cat("####", metric, "{.tabset .tabset-fade .tabset-pills} \n")
       
