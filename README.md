@@ -1,16 +1,16 @@
-These are the scripts specific to the **journal here** publication:
+These are the scripts specific to the **Frontiers in Cellular Neuroscience** publication:
 
-## Title: Final pub title here
+## Title: Inhibiting presynaptic calcium channel motility in the auditory cortex suppresses synchronized input processing
 ### Authors: ***Katrina E. Deane, Ruslan Klymentiev, Jennifer Heck, Frank W. Ohl, Martin Heine, Max F. K. Happel***
-Post link here: llliiiinnnkkkkk
+[https://www.frontiersin.org/articles/10.3389/fncel.2024.1369047](https://www.frontiersin.org/articles/10.3389/fncel.2024.1369047)
 
 ***Please cite us if you use these scripts***
 
 ___
 
 #### Necessary to run:
-Raw data for this project can be found at: https://figshare.com/s/5000eeb8946f1b8fd33e - This is a private link currently as the data is in drafts until the publication is out :)
-Animal raw data (e.g "KIC01_0001.mat") should be placed in ../Deane_etal_2022/Raw;
+Raw data for this project can be found at: https://figshare.com/s/5000eeb8946f1b8fd33e
+Animal raw data (e.g "KIC01_0001.mat") should be placed in ../Deane_etal_2024/Raw;
 
 #### Order to run and summary of steps:
 
