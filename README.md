@@ -26,6 +26,9 @@ If AVRECPeakCLST.csv and AVRECPeakAMST.csv is in \Deane_etal_2022\Data\PeakDataC
 * LMM html files in \Deane_etal_2022\Data\LMMstats
 * NOTE: these master files need to be manually compiled by copying data from per-subject single trial peak data output of Deane_etal_2022\Scripts\MatLab\ChangeInAvrecSTperAnimal, run from the Pipeline01_MatLab script (can be run independantly if data already exists from previous runs)
 
+Then running *Pipeline03_Julia.jl* will produce
+* cohen's d and student's t test graphs and data output
+
 ___
 
 ***Please raise an issue in this repository if something is not running. Thank you!***
