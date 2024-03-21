@@ -9,7 +9,7 @@ These are the scripts specific to the **Frontiers in Cellular Neuroscience** pub
 ___
 
 #### Necessary to run:
-Raw data for this project can be found at: https://figshare.com/s/5000eeb8946f1b8fd33e
+Raw data for this project can be found at: [https://figshare.com/s/5000eeb8946f1b8fd33e](https://figshare.com/articles/dataset/Raw_Data_for_Deane_et_al_2024_Front_Cell_Neurosci/12080910)
 Animal raw data (e.g "KIC01_0001.mat") should be placed in ../Deane_etal_2024/Raw;
 
 #### Order to run and summary of steps:
